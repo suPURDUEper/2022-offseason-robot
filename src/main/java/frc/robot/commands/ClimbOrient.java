@@ -3,7 +3,6 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 //import frc.robot.RobotContainer;
@@ -11,7 +10,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.VisionSubsytem;
 
-public class DriveWithLimelight extends CommandBase {
+public class ClimbOrient extends CommandBase {
   private final DrivetrainSubsystem mDriveTrainSubsystem;
   private final DoubleSupplier m_translationXSupplier;
   private final DoubleSupplier m_translationYSupplier;
@@ -22,17 +21,11 @@ public class DriveWithLimelight extends CommandBase {
   private double mSteeringKp = 0.09; //0.015
   private double minCommand = 0.25; //0.3
   private double turnCommand;
-  
-  // Network Table Entries
-  NetworkTableEntry mKpSteer, mMinTa, mDrive_Kp;
-
-  // Creates a new LimelightAim.
-
-  public DriveWithLimelight(DrivetrainSubsystem dt, VisionSubsytem v) {
+    public ClimbOrient(DrivetrainSubsystem dt, VisionSubsytem v) {
     this(dt, v, () -> 0.0, () -> 0.0, () -> 0.0);
   }
 
-  public DriveWithLimelight(DrivetrainSubsystem dt, VisionSubsytem v, DoubleSupplier xthrottle, DoubleSupplier ythrottle, DoubleSupplier rotthrottle) {
+  public ClimbOrient(DrivetrainSubsystem dt, VisionSubsytem v, DoubleSupplier xthrottle, DoubleSupplier ythrottle, DoubleSupplier rotthrottle) {
     // Use addRequirements() here to declare subsystem dependencies.
     mDriveTrainSubsystem = dt;
     mVision = v;
@@ -53,33 +46,27 @@ public class DriveWithLimelight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (mVision.IsTargetValid()) {
-      double mTx = -mVision.getTx();
-      if (Math.abs(mTx) > Constants.ALLOWABLE_TX_ERROR) {
-        turnCommand = mSteeringKp * mTx + Math.copySign(minCommand, mTx);
+      double currentheading = mDriveTrainSubsystem.getAngleDegrees();
+      if(currentheading < 0){
+       currentheading = currentheading + 360;
+      }
+       double error = currentheading -90;
+      if (Math.abs(error) > Constants.ALLOWABLE_TX_ERROR) {
+        turnCommand = mSteeringKp * error + Math.copySign(minCommand, error);
       } else {
         turnCommand = 0;
       }
       mDriveTrainSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                        -m_translationXSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
-                        -m_translationYSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
+                        -m_translationXSupplier.getAsDouble()*Constants.SLOW_SPEED_MULT,
+                        -m_translationYSupplier.getAsDouble()*Constants.SLOW_SPEED_MULT,
                         turnCommand,
                         mDriveTrainSubsystem.getGyroscopeRotation()
                 )
         );
-    }
-    else {
-        mDriveTrainSubsystem.drive(
-        ChassisSpeeds.fromFieldRelativeSpeeds(
-                -m_translationXSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
-                -m_translationYSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
-                m_rotationSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
-                mDriveTrainSubsystem.getGyroscopeRotation()
-             )
-        );
+
     }      
-  }
+  
 
   // Called once the command ends or is interrupted.
   @Override

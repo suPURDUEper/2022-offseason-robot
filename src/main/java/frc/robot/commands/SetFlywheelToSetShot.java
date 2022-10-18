@@ -19,7 +19,7 @@ public class SetFlywheelToSetShot extends CommandBase {
   @Override
   public void initialize() {
     shooter.enableShooter();
-    shooter.setFlywheelTargetRPM(4225);
+    shooter.setFlywheelTargetRPM(4850);
   }
   
   @Override

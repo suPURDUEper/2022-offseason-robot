@@ -165,6 +165,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_navx.zeroYaw();
   }
 
+
   public Rotation2d getGyroscopeRotation() {
     // FIXED Remove if you are using a Pigeon
   //  return Rotation2d.fromDegrees(m_pigeon.getFusedHeading());
@@ -177,6 +178,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     // We have to invert the angle of the NavX so that rotating the robot counter-clockwise makes the angle increase.
     return Rotation2d.fromDegrees(360.0 - m_navx.getYaw());
+  }
+
+  public double getAngleDegrees(){
+        return m_navx.getYaw();
   }
 
   public void drive(ChassisSpeeds chassisSpeeds) {

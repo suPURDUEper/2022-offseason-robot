@@ -43,12 +43,12 @@ public class Climber extends SubsystemBase {
 
   public void ClimberUp() {
     ClimbMotor.set(Constants.CLIMBER_SPEED);
-    System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
+    //System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
   }
 
   public void ClimberDown() {
     ClimbMotor.set(Constants.CLIMBER_SPEED * -1);
-    System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
+    //System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
   }
 
 public void setPower(double power){
@@ -56,11 +56,11 @@ public void setPower(double power){
     power = 0;
   }
   ClimbMotor.set(power);
-  System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
+  //System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
 }
 
   public boolean isClimberUp(){
-    System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
+    //System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
     if(ClimbEncoder.getPosition() >= Constants.CLIMBER_MAX_HEIGHT){
       return true;
     }
@@ -68,7 +68,7 @@ public void setPower(double power){
   }
 
   public boolean isClimberDown(){
-    System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
+   // System.out.println("climber Encoder: " + ClimbEncoder.getPosition());
     if(ClimbRevLimit.isPressed() == true){
       return true;
     }

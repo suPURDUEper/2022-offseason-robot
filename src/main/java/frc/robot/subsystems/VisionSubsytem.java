@@ -46,6 +46,7 @@ public class VisionSubsytem extends SubsystemBase {
     }
 
     public void setL1LedMode(int mode){
+      
       mLedEntry.forceSetNumber(mode);
     }
 
