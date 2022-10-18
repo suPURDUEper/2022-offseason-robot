@@ -13,6 +13,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    //Drivetrain Subsystem
     /**
      * The left-to-right distance between the drivetrain wheels
      *
@@ -47,14 +49,20 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 3; // FIXED Set back right steer encoder ID
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(209.937); // FIXED Measure and set back right steer offset
 
+    public static final Double BASE_SPEED_MULT = 0.75;
+    public static final Double BOOST_SPEED_MULT = 1.0;
+    public static final Double SLOW_SPEED_MULT = 0.15;
+
     public static final double M3ENCODER_RANGE = 360;
+
+    //Intake Subsystem
     public static final int INTAKE_MOTOR = 9;
     public static final double INTAKE_SPEED = 1;
     public static final double PURGE_INTAKE_SPEED = -.7;
     public static final double STOP_INTAKE = 0.0;
     public static final int DRAWBRIDGE_MOTOR = 1;
     public static final double LOWER_INTAKE_VALUE = 4*4096; //4096 ticks per rotation X 4 rotations FORTNITE BATTLEPASS
-    public static final double RAISED_INTAKE_VALUE = 0;
+    public static final double RAISED_INTAKE_VALUE = -150;
     public static final boolean DRAWBRIDGE_SENSORPHASE = false; //Change boolean for direction of Mag Encoder counting
     public static final double DRAWBRIDGE_ALLOWABLE_ERROR = .005;
     public static final double DRAWBRIDGE_kF = 0;
@@ -64,23 +72,27 @@ public final class Constants {
     public static final double DRAWBRIDGE_MAXINTEGRAL = 4000;
     public static final double DRAWBRIDGE_INTEGRAL_ZONE = 100;
     public static final boolean DRAWBRIDGE_INVERTED = true;
+
+    //Indexer Subsystem
     public static final int INDEXER_MOTOR = 10;
     public static final double PURGE_INDEXER_SPEED = -1;
     public static final double INDEXER_RUNSPEED = 0.7;
     public static final double INDEXER_SHOOTSPEED = 1;
-    public static final double SHOOTING_SPEED = 1;
-    public static final int SHOOTING_MOTOR = 2;
 
-  //Shooting Subsystem
-  public static final double SHOOTER_RPM_TOLERANCE = 300;
-  public static final double SHOOTER_RPM_STABLE_TIME = 300*1000;
-  public static final double SHOOTER_CURRENT_LIMIT_AMPS = 40;
-  public static final int PID_LOOP_INDEX = 0;
-  public static final double FLYWHEEL_KF = 0.055;
-  public static final double FLYWHEEL_KP = 0.08;//0.21;
-  public static final double FLYWHEEL_KI = 0;
-  public static final double FLYWHEEL_KD = 0;//0.7;
-public static final int CLIMBER_CAN_ID = 11;
-public static final float CLIMBER_MAX_HEIGHT = 75;
-public static final double CLIMBER_SPEED = .25;
+    //Shooting Subsystem
+    public static final int SHOOTING_MOTOR = 2;
+    public static final double SHOOTER_RPM_TOLERANCE = 300;
+    public static final double SHOOTER_RPM_STABLE_TIME = 300*1000;
+    public static final double SHOOTER_CURRENT_LIMIT_AMPS = 40;
+    public static final int PID_LOOP_INDEX = 0;
+    public static final double FLYWHEEL_KF = 0.055;
+    public static final double FLYWHEEL_KP = 0.08;//0.21;
+    public static final double FLYWHEEL_KI = 0;
+    public static final double FLYWHEEL_KD = 0;//0.7;
+
+    //Climber Subsystem
+    public static final int CLIMBER_CAN_ID = 11;
+    public static final float CLIMBER_MAX_HEIGHT = 152; //7.5 times climber gear ratio (currently 20:1)
+    public static final double CLIMBER_SPEED = 1.0;
+
 }

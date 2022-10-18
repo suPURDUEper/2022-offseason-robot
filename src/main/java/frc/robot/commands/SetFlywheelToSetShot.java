@@ -3,7 +3,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShootingSubsystem;
-import frc.robot.subsystems.VisionSubsytem;
+//import frc.robot.subsystems.VisionSubsytem;
 
 
 public class SetFlywheelToSetShot extends CommandBase {
@@ -19,7 +19,7 @@ public class SetFlywheelToSetShot extends CommandBase {
   @Override
   public void initialize() {
     shooter.enableShooter();
-    shooter.setFlywheelTargetRPM(3525);
+    shooter.setFlywheelTargetRPM(4225);
   }
   
   @Override

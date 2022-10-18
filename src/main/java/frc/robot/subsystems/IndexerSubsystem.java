@@ -57,6 +57,7 @@ public void StopIndexer() {
 public void ShootIndexer(){
   IndexerMotor.set(Constants.INDEXER_SHOOTSPEED);
 }
+
   @Override
   public void periodic() {
     // This method will be called one per scheduler run

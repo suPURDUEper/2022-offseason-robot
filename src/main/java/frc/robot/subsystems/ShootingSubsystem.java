@@ -4,7 +4,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
+//import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -23,7 +23,7 @@ public class ShootingSubsystem extends SubsystemBase {
 
   private final TalonFX ShootingMotor;
   // Creates a new Intake. 
-  private int targetFlywheelRpm = 0;
+  public int targetFlywheelRpm = 0;
   NetworkTableEntry flywheelNetworkTableEntry;
   boolean isShooterEnabled = false;
   double atSpeedTimer;
@@ -49,6 +49,7 @@ public void setFlywheelTargetRPM(int rpm){
 
 public void setFlywheelDistanceRPM(double ty){
   targetFlywheelRpm = (int) Math.round(3855 + -68.3 * ty + 4.64 * ty * ty + -.168 * ty * ty *ty);
+  SmartDashboard.putNumber("Flywheel Target Speed", targetFlywheelRpm);
 }
 public double getFlywheelRPM(){
   return talonFXUnitsToRpm(ShootingMotor.getSelectedSensorVelocity());

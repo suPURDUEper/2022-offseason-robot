@@ -1,13 +1,12 @@
 
 package frc.robot.commands;
 
-import java.util.function.Supplier;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
+//import frc.robot.RobotContainer;
 //import frc.robot.ShuffleboardInfo;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.VisionSubsytem;
@@ -20,10 +19,10 @@ public class DriveWithLimelight extends CommandBase {
   private final VisionSubsytem mVision;
 
   // Constants
-  private double mSteeringKp = 0.015;
-  private double minCommand = 0.3;
+  private double mSteeringKp = 0.09; //0.015
+  private double minCommand = 0.25; //0.3
   private double turnCommand;
-  private Supplier<Double> throttle;
+  
   // Network Table Entries
   NetworkTableEntry mKpSteer, mMinTa, mDrive_Kp;
 
@@ -63,8 +62,8 @@ public class DriveWithLimelight extends CommandBase {
       }
       mDriveTrainSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                        m_translationXSupplier.getAsDouble(),
-                        m_translationYSupplier.getAsDouble(),
+                        -m_translationXSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
+                        -m_translationYSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
                         turnCommand,
                         mDriveTrainSubsystem.getGyroscopeRotation()
                 )
@@ -73,9 +72,9 @@ public class DriveWithLimelight extends CommandBase {
     else {
         mDriveTrainSubsystem.drive(
         ChassisSpeeds.fromFieldRelativeSpeeds(
-                m_translationXSupplier.getAsDouble(),
-                m_translationYSupplier.getAsDouble(),
-                m_rotationSupplier.getAsDouble(),
+                -m_translationXSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
+                -m_translationYSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
+                m_rotationSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
                 mDriveTrainSubsystem.getGyroscopeRotation()
              )
         );

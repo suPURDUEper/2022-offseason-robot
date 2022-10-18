@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 public class VisionSubsytem extends SubsystemBase {
   private final NetworkTable mLimeLightTable;
   private double tv, tx, ty;
-  private boolean mIsTargetValid;
+  //private boolean mIsTargetValid;
   private final NetworkTableEntry mLedEntry, mTv;
   // Creates a new Vision 
   public VisionSubsytem() {
@@ -29,7 +29,7 @@ public class VisionSubsytem extends SubsystemBase {
     tv = mLimeLightTable.getEntry("tv").getDouble(0.0);
     tx = mLimeLightTable.getEntry("tx").getDouble(0.0);
     ty = mLimeLightTable.getEntry("ty").getDouble(0.0);
-    mIsTargetValid = IsTargetValid();
+    //mIsTargetValid = IsTargetValid();
     mTv.forceSetDouble(tv);
     }
 

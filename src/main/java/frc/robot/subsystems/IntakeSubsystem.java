@@ -43,7 +43,11 @@ public class IntakeSubsystem extends SubsystemBase {
     DrawbridgeMotor.setSelectedSensorPosition(0);
     DrawbridgeMotor.set(ControlMode.Position,0);
   }
-
+  public void setPower(double power){
+    if(Math.abs(power) < .05){
+      power = 0;
+    }
+  }
 public void RunIntake() {
   IntakeMotor.set(Constants.INTAKE_SPEED);
   DrawbridgeMotor.set(ControlMode.Position, Constants.LOWER_INTAKE_VALUE);
@@ -65,6 +69,7 @@ public void LowerIntake() {
 
 public void RaiseIntake() {
   DrawbridgeMotor.set(ControlMode.Position, Constants.RAISED_INTAKE_VALUE);
+  
 } */
   @Override
   public void periodic() {
