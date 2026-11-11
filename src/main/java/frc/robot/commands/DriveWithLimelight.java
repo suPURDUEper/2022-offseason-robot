@@ -19,7 +19,7 @@ public class DriveWithLimelight extends CommandBase {
   private final VisionSubsytem mVision;
 
   // Constants
-  private double mSteeringKp = 0.09; //0.015
+  private double mSteeringKp = 0.12; //0.015
   private double minCommand = 0.25; //0.3
   private double turnCommand;
   
@@ -74,7 +74,7 @@ public class DriveWithLimelight extends CommandBase {
         ChassisSpeeds.fromFieldRelativeSpeeds(
                 -m_translationXSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
                 -m_translationYSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
-                m_rotationSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
+                -m_rotationSupplier.getAsDouble()*Constants.BASE_SPEED_MULT,
                 mDriveTrainSubsystem.getGyroscopeRotation()
              )
         );

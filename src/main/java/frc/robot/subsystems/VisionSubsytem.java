@@ -12,11 +12,12 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 public class VisionSubsytem extends SubsystemBase {
   private final NetworkTable mLimeLightTable;
   private double tv, tx, ty;
-  //private boolean mIsTargetValid;
-  private final NetworkTableEntry mLedEntry, mTv;
+  private boolean mIsTargetValid;
+  private final NetworkTableEntry mLedEntry, mTv, mTx;
   // Creates a new Vision 
   public VisionSubsytem() {
     mTv = Shuffleboard.getTab("Limelight Aim").add("TV", 0.0).getEntry();
+    mTx = Shuffleboard.getTab("Limelight Aim").add("TX", 0.0).getEntry();
     mLimeLightTable = NetworkTableInstance.getDefault().getTable("limelight");
     mLedEntry = mLimeLightTable.getEntry("ledmode");
   }
@@ -29,8 +30,9 @@ public class VisionSubsytem extends SubsystemBase {
     tv = mLimeLightTable.getEntry("tv").getDouble(0.0);
     tx = mLimeLightTable.getEntry("tx").getDouble(0.0);
     ty = mLimeLightTable.getEntry("ty").getDouble(0.0);
-    //mIsTargetValid = IsTargetValid();
+    mIsTargetValid = IsTargetValid();
     mTv.forceSetDouble(tv);
+    mTx.forceSetDouble(tx);
     }
 
     public double getTx(){
@@ -42,7 +44,8 @@ public class VisionSubsytem extends SubsystemBase {
     }
 
     public boolean IsTargetValid(){
-      return (tv== 1.0);
+      return (tv == 1.0);
+      
     }
 
     public void setL1LedMode(int mode){

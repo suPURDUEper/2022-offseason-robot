@@ -29,7 +29,7 @@ public class SetFlywheelToLimelightShot extends CommandBase {
     if (vision.IsTargetValid()) {
       shooter.setFlywheelDistanceRPM(vision.getTy());
     } else {
-      shooter.setFlywheelTargetRPM(4250);
+      shooter.setFlywheelTargetRPM(2000);
 
     }
     

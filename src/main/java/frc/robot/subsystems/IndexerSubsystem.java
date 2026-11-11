@@ -4,58 +4,52 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax IndexerMotor;
-  private final DigitalInput FrontSensor;
-  //private final DigitalInput MiddleSensor;
-  private final DigitalInput BackSensor;
+  private final VictorSPX IndexerMotor;
   ShuffleboardTab tab = Shuffleboard.getTab("Indexer");
   ShuffleboardContainer container;
 
   public IndexerSubsystem(){
     
-    IndexerMotor = new CANSparkMax(Constants.INDEXER_MOTOR, MotorType.kBrushless); 
-    IndexerMotor.setIdleMode(IdleMode.kBrake);
-    FrontSensor = new DigitalInput(0);
-   // MiddleSensor = new DigitalInput(1);
-    BackSensor = new DigitalInput(2);
-   
+    IndexerMotor = new VictorSPX(Constants.INDEXER_MOTOR); 
+    IndexerMotor.setNeutralMode(NeutralMode.Brake);   
   }
 
 public void RunIndexer() {
   
-  if(BackSensor.get() == false){
-    IndexerMotor.set(0);
+  if(RobotContainer.BackSensor.get() == false){
+    IndexerMotor.set(ControlMode.PercentOutput, 0);
   }
   else{
-    if(FrontSensor.get() == true){
-      IndexerMotor.set(0);
+    if(RobotContainer.FrontSensor.get() == true){
+      IndexerMotor.set(ControlMode.PercentOutput, 0);
     }else{
-      IndexerMotor.set(Constants.INDEXER_RUNSPEED);
+      IndexerMotor.set(ControlMode.PercentOutput, Constants.INDEXER_RUNSPEED);
     }
   }
 }
 
 public void PurgeIndexer() {
-  IndexerMotor.set(Constants.PURGE_INDEXER_SPEED);
+  IndexerMotor.set(ControlMode.PercentOutput, Constants.PURGE_INDEXER_SPEED);
 }
 public void StopIndexer() {
-  IndexerMotor.set(0);
+  IndexerMotor.set(ControlMode.PercentOutput, 0);
 }
 
 public void ShootIndexer(){
-  IndexerMotor.set(Constants.INDEXER_SHOOTSPEED);
+  IndexerMotor.set(ControlMode.PercentOutput, Constants.INDEXER_SHOOTSPEED);
 }
 
   @Override

@@ -8,24 +8,24 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax IntakeMotor;  
+  private final VictorSPX IntakeMotor;  
   private final TalonSRX DrawbridgeMotor;
   ShuffleboardTab tab = Shuffleboard.getTab("Intake");
   ShuffleboardContainer container;
 
   public IntakeSubsystem(){
     
-    IntakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushless); 
+    IntakeMotor = new VictorSPX(Constants.INTAKE_MOTOR);
 
     DrawbridgeMotor = new TalonSRX(Constants.DRAWBRIDGE_MOTOR);
     DrawbridgeMotor.configFactoryDefault();
@@ -49,16 +49,21 @@ public class IntakeSubsystem extends SubsystemBase {
     }
   }
 public void RunIntake() {
-  IntakeMotor.set(Constants.INTAKE_SPEED);
+  if((RobotContainer.FrontSensor.get() == false) && (RobotContainer.BackSensor.get() == false)){
+    IntakeMotor.set(ControlMode.PercentOutput, 0);
+    DrawbridgeMotor.set(ControlMode.Position, Constants.RAISED_INTAKE_VALUE);
+  }else{
+  IntakeMotor.set(ControlMode.PercentOutput, Constants.INTAKE_SPEED);
   DrawbridgeMotor.set(ControlMode.Position, Constants.LOWER_INTAKE_VALUE);
+  }
 }
 
 public void PurgeIntake() {
-  IntakeMotor.set(Constants.PURGE_INTAKE_SPEED);
+  IntakeMotor.set(ControlMode.PercentOutput, Constants.PURGE_INTAKE_SPEED);
 }
 
 public void StopIntake() {
-  IntakeMotor.set(Constants.STOP_INTAKE);
+  IntakeMotor.set(ControlMode.PercentOutput, Constants.STOP_INTAKE);
   DrawbridgeMotor.set(ControlMode.Position, Constants.RAISED_INTAKE_VALUE);
 }
 
