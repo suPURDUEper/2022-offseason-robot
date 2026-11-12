@@ -37,7 +37,7 @@ public final class Constants {
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 4; // FIXED Set front right drive motor ID
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 3; // FIXED Set front right steer motor ID
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 2; // FIXED Set front right steer encoder ID
-    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(246.5); // FIXED Measure and set front right steer offset
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(252.7); // FIXED Measure and set front right steer offset
 
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 5; // FIXED Set back left drive motor ID
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 6; // FIXED Set back left steer motor ID
@@ -83,12 +83,12 @@ public final class Constants {
     public static final int SHOOTING_MOTOR = 2;
     public static final double SHOOTER_RPM_TOLERANCE = 300;
     public static final double SHOOTER_RPM_STABLE_TIME = 300*1000;
-    public static final double SHOOTER_CURRENT_LIMIT_AMPS = 40;
+    public static final double SHOOTER_CURRENT_LIMIT_AMPS = 60;
     public static final int PID_LOOP_INDEX = 0;
-    public static final double FLYWHEEL_KF = 0.055;
-    public static final double FLYWHEEL_KP = 0.08;//0.21;
+    public static final double FLYWHEEL_KF = 0.0515;
+    public static final double FLYWHEEL_KP = 0.2;//0.21;
     public static final double FLYWHEEL_KI = 0;
-    public static final double FLYWHEEL_KD = 0;//0.7;
+    public static final double FLYWHEEL_KD = 0.7;//0.7;
 
     //Climber Subsystem
     public static final int CLIMBER_CAN_ID = 11;
