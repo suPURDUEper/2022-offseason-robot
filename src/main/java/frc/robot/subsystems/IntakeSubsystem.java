@@ -39,7 +39,7 @@ public class IntakeSubsystem extends SubsystemBase {
     DrawbridgeMotor.config_kD(0, Constants.DRAWBRIDGE_kD);
     DrawbridgeMotor.config_IntegralZone(0, Constants.DRAWBRIDGE_INTEGRAL_ZONE);
     DrawbridgeMotor.configMaxIntegralAccumulator(0, Constants.DRAWBRIDGE_MAXINTEGRAL);
-    DrawbridgeMotor.configClosedLoopPeakOutput(0, 1);
+    DrawbridgeMotor.configClosedLoopPeakOutput(0, 0.6);
     DrawbridgeMotor.setSelectedSensorPosition(0);
     DrawbridgeMotor.set(ControlMode.Position,0);
   }

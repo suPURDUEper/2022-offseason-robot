@@ -49,7 +49,7 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 3; // FIXED Set back right steer encoder ID
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(212.2); // FIXED Measure and set back right steer offset
 
-    public static final Double BASE_SPEED_MULT = 0.5; //0.75 is standard
+    public static final Double BASE_SPEED_MULT = 0.25; //0.75 is standard
     public static final Double BOOST_SPEED_MULT = 1.0;
     public static final Double SLOW_SPEED_MULT = 0.15;
 
@@ -61,7 +61,7 @@ public final class Constants {
     public static final double PURGE_INTAKE_SPEED = -.7;
     public static final double STOP_INTAKE = 0.0;
     public static final int DRAWBRIDGE_MOTOR = 1;
-    public static final double LOWER_INTAKE_VALUE = 4*4096; //4096 ticks per rotation X 4 rotations FORTNITE BATTLEPASS
+    public static final double LOWER_INTAKE_VALUE = 4.0*4096; //4096 ticks per rotation X 4 rotations
     public static final double RAISED_INTAKE_VALUE = 0;
     public static final boolean DRAWBRIDGE_SENSORPHASE = false; //Change boolean for direction of Mag Encoder counting
     public static final double DRAWBRIDGE_ALLOWABLE_ERROR = 5;
