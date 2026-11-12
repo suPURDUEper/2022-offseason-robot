@@ -96,8 +96,8 @@ public final class Constants {
     public static final double CLIMBER_SPEED = 1.0;
     public static final double ALLOWABLE_TX_ERROR = 1.5;
 
-    public static final int LowSetRPM = 1700;
-    public static final int MidSetRPM = 2000;
-    public static final int HighSetRPM = 2300;
+    public static final int LowSetRPM = 1425;
+    public static final int MidSetRPM = 1575;
+    public static final int HighSetRPM = 1750;
 
 }

@@ -48,7 +48,7 @@ public void setFlywheelTargetRPM(int rpm){
 }
 
 public void setFlywheelDistanceRPM(double ty){
-  targetFlywheelRpm = (int) Math.round(1775 + 33.2 * ty + 6.1 * Math.pow(ty, 2) );
+  targetFlywheelRpm = (int) Math.round(1420 - 11.3 * ty + 2.35 * Math.pow(ty, 2) );
   SmartDashboard.putNumber("Flywheel Target Speed", targetFlywheelRpm);
 }
 public double getFlywheelRPM(){
